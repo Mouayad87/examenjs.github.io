@@ -1,0 +1,32 @@
+<% convertir_date = function(date) {
+    var id_temp = Math.random().toString(36).substring(7); %>
+    <span id="<%= id_temp %>"></span>
+    <script>convertir_date("<%= date %>","<%= id_temp %>");</script>
+  <% } 
+  for (var i = 0; i < discussions.length; i++) { %>
+    <div class="sujet discussion" id="<%= discussions[i][0].id_discussion %>">
+      <table>
+          <tr>
+              <td style="width:50px;">
+            <img src="static/avatar.png" style="max-width:75%;">
+          </td>
+          <td>
+            <a href="<%= discussions[i][0].id_discussion %>" class="sujet_texte">
+              <%= discussions[i][0].sujet %>
+            </a><br>
+            <span class="infos_sujet">
+              créé par <a href="profil_<%= discussions[i][0].utilisateur_createur %>">
+                <%= discussions[i][0].utilisateur_createur %>
+              </a> le
+                <% convertir_date(discussions[i][0].date_ecriture); %>
+            </span>
+            <span class="nombre_messages">
+              <%= discussions[i][0].nombre_messages %>
+              <% if (discussions[i][0].nombre_messages === 1) { %> message <% } %>
+              <% if (discussions[i][0].nombre_messages > 1) { %> messages <% } %>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <% } %>

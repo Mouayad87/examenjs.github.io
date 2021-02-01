@@ -1,0 +1,81 @@
+@media(max-width:991px) {
+	.discussions {
+		padding-bottom: 15px;
+	}
+}
+@media(max-width:767px) {
+	.desktop {
+		display: none;
+	}
+	.avatar {
+		display: none;
+	}
+	.ligne {
+		position:relative;
+			bottom: 10px;
+	}
+	.sujet_discussion {
+		margin-bottom: 15px;
+	}
+	.nom_utilisateur {
+		position: relative;
+			bottom: 4px;
+			right: 3px;
+	}
+	.editeur {
+		margin-right: 10px;
+	}
+	.form-group {
+		padding-left: 17px;
+	}
+	.ligne {
+		margin-bottom: -8px;
+	}
+}
+@media(min-width: 768px) {
+	.mobile {
+		display: none;
+	}
+	.nom_utilisateur {
+		display: block;
+		text-align: center;
+	}
+	.ligne {
+		margin-bottom: 24px;
+	}
+}
+
+/*avatar du profil*/
+.avatar_profil_mobile {
+	display: none;
+}
+@media(max-width: 572px) {
+	.avatar_profil {
+		max-width: 110%;
+  		vertical-align: middle;
+	}
+}
+
+@media(min-width: 570px) {
+	#mod_avatar {
+		position: relative;
+			bottom: 25px;
+	}
+}
+@media(max-width: 500px) {
+	.avatar_profil {
+		position: relative;
+		top: 5px;
+	}
+}
+@media(max-width: 400px) {
+	.avatar_profil_desktop {
+		display: none;
+	}
+	.avatar_profil_mobile {
+		display: block;
+		position: relative;
+		bottom: 35px;
+		text-align: center;
+	}
+}

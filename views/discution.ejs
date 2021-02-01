@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <% include balise_head %>
+    <script src="static/js/conversion_dates.js"></script>
+    <script src="static/js/discussion.js"></script>
+  </head>
+  <body>
+    <% include barre_navigation %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-offset-2 col-md-offset-1 col-md-10 col-lg-8 blanc discussions">
+          <p>
+						<% if (nom_utilisateur === 'session inexistante') { %>
+							<div class="alert alert-info" style="text-align:justify">
+	              Vous n'êtes actuellement pas connecté.
+	              Par conséquent, vous ne pouvez pas aimer ou publier des messages. 
+	            	<a href="login">
+	            	  Connectez-vous
+	            	</a>
+	            	pour participer à la discussion.
+	            </div>
+	           <% } %>
+          </p>
+          <div class="sujet_discussion">
+				    <%= sujet_discussion %>
+				  </div>
+				  <div id="messages">
+            <% include chargement_messages %>
+          </div>
+          <% if (nom_utilisateur !== 'session inexistante') { %>
+            <% include editeur %>
+          <% } %>
+        </div>
+        <div class="col-lg-offset-2 col-md-offset-1"></div>
+      </div>
+    </div>
+  </body>
+<html>

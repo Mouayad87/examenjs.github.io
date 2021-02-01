@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <% if (!profil) { %>
+    <script>
+      window.location.assign('error');
+    </script>
+  <% } else { %>
+    <head>
+      <% include balise_head %>
+      <script src="static/js/verification_form.js"></script>
+      <script src="static/js/profil.js"></script>
+      <script> // ces fonctions javascript ont besoin de variables EJS
+        function inserer_form() {
+          byId('nc_prenom').value = '<%= profil.prenom %>';
+          byId('nc_nom').value = '<%= profil.nom %>';
+          byId('nc_prenom_mobile').value = '<%= profil.prenom %>';
+          byId('nc_nom_mobile').value = '<%= profil.nom %>';
+          byId('nc_mail').value = '<%= profil.email %>';
+        }
+      </script>
+    </head>
+    
+    <body>
+      <% include barre_navigation %>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-offset-2 col-md-offset-1 col-md-10 col-lg-8 blanc corps_page">
+            <div class="alert alert-success" style="text-align:center; display:none" id="coordonnees_success">
+              Les coordonnées ont été modifiées avec succès
+            </div>
+            <div class="alert alert-success" style="text-align:center; display:none" id="password_success">
+              Le mot de passe a été modifié avec succès
+            </div>
+            <h4 class="gros_titre">Profil</h4>
+            <div class="avatar_profil_mobile">
+              <img src="static/avatars_grands/<%= profil.avatar %>.jpg" class="avatar_profil">
+            </div>
+            <div class="row">
+              <div class="col-xs-4 avatar_profil_desktop">
+                <img src="static/avatars_grands/<%= profil.avatar %>.jpg" class="avatar_profil"><br>
+              </div>
+              <div class="col-xs-8" id="infos_profil">
+                <p style="font-size:16px; margin-top:15px;">
+                  <span id="info_nom_utilisateur">
+                    Nom d'utilisateur : <%= profil.nom_utilisateur %>
+                  </span><br>
+                  <span id="info_prenom">
+                    Prénom : <%= profil.prenom %>
+                  </span><br>
+                  <span id="info_nom">
+                    Nom : <%= profil.nom %>
+                  </span><br>
+                  <span id="info_email">
+                    E-mail : <%= profil.email %>
+                  </span><br>
+                </p>
+                <% if (nom_utilisateur === profil.nom_utilisateur) { %>
+                  <span class="btn btn-default" onclick="afficher_mod();">
+                    <span class="glyphicon glyphicon-pencil"></span> 
+                    Coordonnées
+                  </span>
+                  <span class="btn btn-default" onclick="afficher_mod_password();">
+                    <span class="glyphicon glyphicon-pencil"></span> 
+                    Mot de passe
+                  </span>
+                  <span class="btn btn-default" onclick="afficher_mod_avatar();">
+                    <span class="glyphicon glyphicon-pencil"></span> 
+                    Avatar
+                  </span>
+                <% } else { %>
+                  <a class="btn btn-primary" href="mailto:<%= profil.email %>">
+                    <span class="glyphicon glyphicon-pencil"></span> 
+                    Envoyer un courriel
+                  </a>
+                <% } %>
+              </div>
+            </div> 
+            <% include form_profil %>
+            <div id="mod_avatar" style="display:none;">
+              <script> avatars_small('<%= nom_utilisateur %>'); </script>
+            </div>     
+          </div>
+          <div class="col-lg-offset-2 col-md-offset-1"></div>
+        </div>
+      </div>
+      <script> // ces fonctions doivent attendre que la page soit chargée pour être exécutées
+        responsive();
+        inserer_form();
+        verifier_form();
+        afficher_mod();
+      </script>
+    </body>
+  <% } %>
+<html>

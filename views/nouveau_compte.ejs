@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include balise_head %>
+    <script src="static/js/login.js"></script>
+    <script src="static/js/nouveau_compte.js"></script>
+    <script src="static/js/verification_form.js"></script>
+  </head>
+  <body>
+    <% include barre_navigation %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-offset-2 col-md-offset-1 col-md-10 col-lg-8 blanc">
+        <center class="alert alert-danger" id="utilisateur_existant" style="display: none;">
+          Ce nom d'utilisateur existe déjà. Veuillez en choisir un autre.
+        </center>
+        <form class="form-horizontal" style="padding-right:20px;">
+          <div class="form-group">
+            <h4 class="gros_titre">Créer un compte</h4>
+          </div>
+          <% include form_nouveau_compte %>
+          <div class="form-group">
+            <span class="pull-right btn btn-primary btn-nouveau_compte" 
+              onclick="nouveau_compte();">
+                Créer un compte
+            </span>
+          </div>
+        </form>
+        <div class="col-lg-offset-2 col-md-offset-1"></div>
+      </div>
+    </div>
+  </body>
+</html>

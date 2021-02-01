@@ -1,0 +1,150 @@
+<!-- cette fonction sert à lancer la conversion d'une date formatée par mysql.
+elle utilise le fichier conversion_dates.js -->
+<% convertir_date = function(date) {
+    var id_temp = Math.random().toString(36).substring(7); %>
+    <span id="<%= id_temp %>"></span>
+    <script>convertir_date("<%= date %>","<%= id_temp %>");</script>
+  <% }
+  <!-- cette boucle parcourt tous les messages et applique à chacun un formattage -->
+  for (var i = 0; i < m.length; i++) { %>
+    <!-- les lignes suivantes traitent quelques caractères spéciaux (' " \)
+    qui créent des bugs s'ils ne sont pas "encodés" -->
+    <% m[i].contenu = m[i].contenu
+      .replace(/#g_doubles/g, '"')
+      .replace(/#g_simples/g, "'")
+      .replace(/#backslash/g, "\\"); %>
+    <!-- cet attribut ID permet de sélectionner plus facilement et supprimer les messages -->
+    <div id="<%= m[i].id_message %>">
+      <p class="ligne"></p>
+      <div class="row">
+        <div class="col-sm-2 zone_utilisateur">
+          <image src="static/avatars_grands/<%= m[i].avatar %>.jpg" class="avatar"><br>
+        <div>
+          <a href="profil_<%= m[i].nom_utilisateur %>" class="nom_utilisateur">
+            <%= m[i].nom_utilisateur %>
+          </a>
+          <!-- affichage sur les appareils dont la largeur de la fenêtre est petite -->
+          <span class="mobile">
+            <a onclick="aimer('<%= m[i].id_message %>', '<%= nom_utilisateur %>')"
+              class="btn btn-sm btn-success">
+                <span class="glyphicon glyphicon-heart"></span>
+                <span class="likes">
+                  <%= m[i].likes %>
+                </span>
+            </a>
+            <!-- les boutons suivants s'affichent seulement si l'utilisateur connecté
+            a écrit le message -->
+            <% if (nom_utilisateur === m[i].nom_utilisateur) { %>
+              <!-- bouton "modifier" -->
+              <span id="<%= m[i].id_message %>_bouton_modifier_mobile">
+                <span onclick="modifier_message('<%= m[i].id_message %>')"
+                  class="btn btn-sm btn-default">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                    modifier
+                </span>
+              </span>
+              <!-- bouton "enregistrer", qui s'affichera après un clic sur "modifier" -->
+              <span id="<%= m[i].id_message %>_bouton_enregistrer_mobile" style="display: none;">
+                <span onclick="enregistrer_message('<%= m[i].id_message %>')"
+                  class="btn btn-sm btn-default">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                    enregistrer
+                </span>
+              </span>
+              <span>
+              <!-- bouton "supprimer" -->
+                <span onclick="supprimer_message('<%= m[i].id_message %>')"
+                  class="btn btn-sm btn-danger">
+                  <span class="glyphicon glyphicon-remove"></span>
+                    supprimer
+                </span><br>
+              </span>
+            <% } %>
+          </span>
+        </div>
+          <center>
+            <!-- affichage sur les appareils dont la largeur de la fenêtre est plus grande -->
+            <span class="desktop">
+              <a onclick="aimer('<%= m[i].id_message %>', '<%= nom_utilisateur %>')"
+              class="btn btn-sm btn-success"
+              style="margin-top: 5px;">
+                <span class="glyphicon glyphicon-heart"></span>
+                <span class="likes">
+                  <%= m[i].likes %>
+                </span>
+              </a><br>
+            </span>
+          </center>
+        </div>
+        <!-- si les boutons s'affichent, la balise prend la classe bootstrap col-sm-8 -->
+        <% if (nom_utilisateur === m[i].nom_utilisateur) { %>
+          <div class="td_message col-sm-8">
+        <% } else { %>
+        <!-- dnas le cas contraire, on peut se permettre 
+        d'avoir une zone de texte plus grande -->
+          <div class="td_message col-sm-10">
+        <% } %>
+          <div class="zone_message">
+            <div class="dates">
+              <span class="date_ecriture">
+                écrit le <% convertir_date(m[i].date_ecriture); %><br>
+              </span>
+              <span class="date_modification">
+                <% if (m[i].date_modification !== '0000-00-00 00:00:00') { %> 
+                  modifié le <% convertir_date(m[i].date_modification); %><br> 
+                <% } %>
+              </span>
+            </div>
+            <div class="editeur mod_message" style="display: none;">
+              <!-- la textarea contient un attribut ID généré au hasard 
+              pour permettre à TinyMCE de générer l'éditeur plusieurs fois 
+              (nous verrons ceci lorsque nous nous occuperons d'afficher TinyMCE) -->
+              <textarea id="<%= m[i].id_message + Math.random().toString(36).substring(7); %>">
+                <%= m[i].contenu %>
+              </textarea>
+            </div>
+            <span class="affichage">
+              <%- m[i].contenu %>
+            </span>
+          </div>
+        </div>
+        <% if (nom_utilisateur === m[i].nom_utilisateur) { %>
+          <!-- affichage des boutons sur les fenêtres plus larges -->
+          <div class="desktop">
+            <!-- l'attribut "style" force le texte à s'afficher en haut -->
+            <div class="col-sm-2" style="vertical-align: text-top;">
+              <center>
+                <!-- bouton "modifier" -->
+                <div id="<%= m[i].id_message %>_bouton_modifier">
+                  <span onclick="modifier_message('<%= m[i].id_message %>')"
+                    class="btn btn-sm btn-default">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                      modifier
+                  </span><br>
+                </div>
+              </center>
+              <center>
+                <!-- bouton "enregistrer" -->
+                <div id="<%= m[i].id_message %>_bouton_enregistrer" style="display: none;">
+                  <span onclick="enregistrer_message('<%= m[i].id_message %>')"
+                    class="btn btn-sm btn-default">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                      enregistrer
+                  </span><br>
+                </div>
+              </center>
+              <center>
+                <div>
+                  <!-- bouton "supprimer" -->
+                  <span onclick="supprimer_message('<%= m[i].id_message %>')" class="btn btn-sm btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span>
+                      supprimer
+                  </span><br>
+                </div>
+              </center>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  <% } %>

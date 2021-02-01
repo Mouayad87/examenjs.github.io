@@ -1,0 +1,98 @@
+<form class="form-horizontal" id="mod_coordonnees">
+  <div class="form-group">
+    <h4 class="gros_titre">Modifier les coordonnées</h4>
+  </div>
+  <div class="row desktop">
+    <div class="form-group">
+      <div id="form_nc_prenom">
+       <label for="nc_prenom" class="col-sm-3 control-label">Prénom</label>
+       <div class="col-lg-4 col-sm-4">
+         <input type="text" class="form-control" id="nc_prenom" onkeyup="verifier('prenom');">
+         <span class="help-block message_erreur" id="prenom_incorrect">
+            Ce prénom est invalide.
+         </span>
+       </div>
+      </div>
+      <div id="form_nc_nom">
+        <label for="nc_nom" class="col-sm-1 control-label">Nom</label>
+        <div class="col-lg-4 col-sm-4">
+          <input type="text" class="form-control" id="nc_nom" onkeyup="verifier('nom');">
+          <span class="help-block message_erreur" id="nom_incorrect">
+            Ce nom est invalide.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mobile">
+    <div class="form-group" id="form_nc_prenom_mobile">
+      <label for="nc_prenom_mobile" class="col-sm-4 control-label">Prénom</label>
+      <div class="col-lg-8 col-sm-8">
+        <input type="text" class="form-control" id="nc_prenom_mobile" onkeyup="verifier('prenom_mobile');">
+        <span class="help-block message_erreur" id="prenom_mobile_incorrect">
+          Ce prénom est invalide.
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row mobile">
+    <div class="form-group" id="form_nc_nom_mobile">
+      <label for="nc_nom_mobile" class="col-sm-4 control-label">Nom</label>
+      <div class="col-lg-8 col-sm-8">
+        <input type="text" class="form-control" id="nc_nom_mobile" onkeyup="verifier('nom_mobile');">
+        <span class="help-block message_erreur" id="nom_mobile_incorrect">
+          Ce nom est invalide.
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group" id="form_nc_mail">
+      <label for="nc_mail" class="col-lg-3 col-sm-3 control-label">Mail</label>
+      <div class="col-lg-9 col-sm-9">
+        <input type="text" class="form-control" id="nc_mail" onkeyup="verifier('mail');">
+        <span class="help-block message_erreur" id="mail_incorrect">
+          Cette adresse e-mail est invalide.
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <span class="pull-right btn btn-primary btn-nouveau_compte" onclick="modifier_compte('<%= profil.nom_utilisateur %>');">
+      Enregistrer
+    </span>
+  </div>
+</form> 
+<form class="form-horizontal" id="mod_password">
+  <div class="form-group">
+    <h4 class="gros_titre">Modifier le mot de passe</h4>
+  </div>
+  <div class="row">
+    <div class="form-group" id="form_nc_ancien_password">
+      <label for="form_nc_ancien_password" class="col-lg-3 col-sm-4 control-label">Ancien mot de passe</label>
+      <div class="col-lg-9 col-sm-8">
+        <input type="password" class="form-control" id="nc_ancien_password">
+        <span class="help-block message_erreur" id="ancien_password_incorrect">
+          Le mot de passe est incorrect.
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group" id="form_nc_nouveau_password">
+      <label for="form_nc_nouveau_password" class="col-lg-3 col-sm-4 control-label">Nouveau mot de passe</label>
+      <div class="col-lg-9 col-sm-8">
+        <input type="password" class="form-control" id="nc_nouveau_password"
+        onkeyup="verifier_nouveau_password();">
+        <span class="help-block message_erreur" id="nouveau_password_incorrect">
+          Le mot de passe doit contenir au minimum 4 caractères, au maximum 20 caractères, et peut être uniquement composé de chiffres et de lettres.
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <span class="pull-right btn btn-primary btn-nouveau_compte" onclick="modifier_password('<%= profil.nom_utilisateur %>');">
+      Enregistrer
+    </span>
+  </div>
+</form>

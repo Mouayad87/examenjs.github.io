@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default" id="navbar" style="height:50px;">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">Forum</a> 
+     <a href="#"
+         class="navbar-toggle" 
+         onclick="navbar_mobile();">
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+     </a>
+ </div>
+ <div class="navbar-collapse collapse" id="contenu_nav">
+   <ul class="nav navbar-nav">
+     <li><a href="/">Accueil</a></li>
+   </ul>
+   <% if (nom_utilisateur !== 'session inexistante') { %>
+     <form class="navbar-form navbar-left">
+               <a href="new" class="btn btn-default">
+                   <span class="glyphicon glyphicon-pencil"></span> 
+                   Nouvelle discussion
+               </a>
+     </form>
+   <% } %>
+     <ul class="nav navbar-nav navbar-right" style="padding-right:15px;">
+       <li>
+       <% if (nom_utilisateur !== 'session inexistante') { %>
+           <li>
+             <a href="profil_<%= nom_utilisateur %>" style="color:black;">
+             <%= nom_utilisateur %>
+             </a>
+           </li>
+         <% } %>
+         <% if (nom_utilisateur === 'session inexistante') { %>
+           <a href="nouveau_compte">
+             Créer un compte
+           </a>
+         <% } %>
+     <li>
+       <% if (nom_utilisateur === 'session inexistante') { %>
+         <a href="login">
+           Login
+         </a>
+       <% } else { %>
+         <a href="logout">
+           Logout
+         </a>
+       <% } %>
+     </li>
+   </ul>
+ </div>
+</nav>

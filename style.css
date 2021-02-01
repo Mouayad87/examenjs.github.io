@@ -1,0 +1,136 @@
+body {
+	background-color: rgb(245, 245, 245);
+}
+.blanc {
+	background-color: rgb(255, 255, 255);
+	margin-top: -4px;
+	padding-top: 4px;
+}
+table {
+  position: relative;
+    top: -2px;
+}
+.sujet {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.sujet_texte {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+    top: -1px;
+  color:black;
+}
+.sujet_texte:hover {
+  text-decoration: underline;
+  color:black;
+}
+.infos_sujet {
+  position: relative;
+    top: 2px;
+}
+.nombre_messages {
+  position: relative;
+    top: 2px;
+  font-weight: bold;
+}
+.dm {
+  color: rgb(150,150,150);
+}
+.td_message {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.act_message {
+	vertical-align: text-top;
+}
+.btn {
+	margin-bottom: 10px;
+}
+.ecrire_message {
+	padding-top: 10px;
+}
+.help-block {
+	position: relative;
+		top: -8px;
+}
+.row {
+	position: relative;
+		top: -15px;
+}
+.modification_message {
+    min-height: 60px;
+    overflow-y: auto;
+    word-wrap:break-word;
+}
+.publication_message {
+    float:right; 
+    position:relative; 
+        top:5px;
+}
+.dates {
+	color: grey;
+	position: relative;
+		top: -3px;
+}
+#input_sujet {
+	width: 100%;
+	font-size: 20px;
+	margin-top: 10px;
+	text-align: center;
+}
+.zone_message {
+	max-height: 400px;
+	overflow: auto;
+	margin-right: -11px;
+}
+.message_erreur {
+	position: relative;
+	top: 2px;
+	margin-bottom: -15px;
+	display: none;
+}
+.gros_titre {
+	font-size:30px; 
+	text-decoration:bold; 
+	text-align:center;
+	margin-bottom: 25px;
+}
+.sujet_discussion {
+	font-size:30px;
+	text-decoration:bold;
+	text-align:center;
+	margin-bottom: 12px;
+	position: relative;
+		bottom: 5px;
+}
+.avatar {
+	max-width: 80%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.avatar_profil {
+	max-width:180px;
+	margin-top: 5px;
+	position: relative;
+	bottom: 20px;
+}
+.ligne {
+	border-top: solid 3px rgb(235,235,235);
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.btn-nouveau_compte {
+	margin-bottom:4px ;
+	margin-top:-15px; 
+	position: relative; 
+		bottom: 9px;
+}
+#mod_coordonnees, #mod_password {
+	padding-right:20px; 
+	display:none;
+}
+.editeur {
+	margin-top: 10px;
+}
